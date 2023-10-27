@@ -4,6 +4,8 @@
 #include "../Macros.h"
 #include "../Utils/Math.h"
 
+#include "../Assets/Font/FontAsset.h"
+
 namespace Cure {
 	class CURE_API Window
 	{
@@ -20,7 +22,9 @@ namespace Cure {
 		void RenderRectOutline(Vec2 pos, Vec2 size, SDL_Color color);
 		void RenderRectFilled(Vec2 pos, Vec2 size, SDL_Color color);
 
-		void RenderCircleOutline(Vec2 pos, float radius, SDL_Color);
+		void RenderCircleOutline(Vec2 pos, float radius, SDL_Color color);
+
+		void RenderText(Vec2 pos, FontAsset* font, const std::string& text, SDL_Color color);
 	private:
 		SDL_Window* m_SDLWindow;
 		SDL_Renderer* m_SDLRenderer;

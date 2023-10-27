@@ -3,6 +3,8 @@
 #include "../Application/Application.h"
 #include "../Input/Input.h"
 
+#include <SDL_ttf.h>
+
 namespace Cure {
 
 	Window::Window(WindowParameters& params)
@@ -78,5 +80,14 @@ namespace Cure {
 			SDL_RenderDrawPointF(m_SDLRenderer, point.x, point.y);
 		}
 	}
+	void Window::RenderText(Vec2 pos, FontAsset* font, const std::string& text, SDL_Color color)
+	{
+		SDL_Surface* surface = TTF_RenderText_Solid(font->GetNativeFont(), text.c_str(), color);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(m_SDLRenderer, surface);
+		SDL_FRect rect = { pos.x, pos.y, surface->w, surface->h };
+		SDL_RenderCopyF(m_SDLRenderer, texture, 0, &rect);
 
+		SDL_FreeSurface(surface);
+		SDL_DestroyTexture(texture);
+	}
 }
