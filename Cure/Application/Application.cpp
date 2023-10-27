@@ -1,8 +1,9 @@
 #include "Application.h"
 #include "ApplicationParameters.h"
+#include "../Utils/DebugTimer.h"
 #include <iostream>
 #include <SDL.h>
-#include "../Utils/DebugTimer.h"
+#include <SDL_ttf.h>
 
 namespace Cure {
 	Cure::Application* Application::s_Instance;
@@ -10,6 +11,7 @@ namespace Cure {
 	Application* CreateApp(Cure::ApplicationParameters& params)
 	{
 		SDL_Init(SDL_INIT_EVERYTHING);
+		TTF_Init();
 
 		Application::s_Instance = new Application(params);
 		return Application::s_Instance;
@@ -34,6 +36,7 @@ namespace Cure {
 		delete m_Window;
 		delete m_SceneManager;
 		delete m_TimeController;
+		TTF_Quit();
 		SDL_Quit();
 	}
 
