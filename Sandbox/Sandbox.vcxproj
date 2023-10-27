@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Dev\Cure\lib\SDL\include;$(SolutionDir)Cure;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)lib\SDL-TTF\include;C:\Dev\Cure\lib\SDL\include;$(SolutionDir)Cure;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)-$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Platform)-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Dev\Cure\lib\SDL\include;$(SolutionDir)Cure;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)lib\SDL-TTF\include;C:\Dev\Cure\lib\SDL\include;$(SolutionDir)Cure;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)-$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Platform)-$(Configuration)\</IntDir>
   </PropertyGroup>

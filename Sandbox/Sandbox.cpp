@@ -26,11 +26,14 @@ public:
 
 	void Render() override
 	{
-		Cure::Application::Get().GetWindow().SetColor({ 255, 0, 0, 255 });
-		Cure::Application::Get().GetWindow().Clear();
-
-		Cure::Application::Get().GetWindow().RenderRectFilled(GetOwner()->GetComponent<Cure::TransformComponent>()->m_Position, { 50, 50 }, { 0, 0, 255, 255 });
-		Cure::Application::Get().GetWindow().RenderCircleOutline(Cure::Input::Get().GetMousePos(), 35.3553390593, { 0, 255, 0, 255 });
+		Cure::Window& wnd = Cure::Application::Get().GetWindow();
+		Cure::TagComponent* tagComp = GetOwner()->GetComponent<Cure::TagComponent>();
+		wnd.SetColor({ 255, 0, 0, 255 });
+		wnd.Clear();
+		Vec2 pos = GetOwner()->GetComponent<Cure::TransformComponent>()->m_Position;
+		wnd.RenderRectFilled(pos, { 50, 50 }, { 0, 0, 255, 255 });
+		wnd.RenderCircleOutline(Cure::Input::Get().GetMousePos(), 35.3553390593, { 0, 255, 0, 255 });
+		wnd.RenderText(pos, Cure::AssetManager::Get().GetAsset<Cure::FontAsset>("comic_sans_16"), tagComp->GetTag(), { 255,255,255,255 });
 	}
 	Vec2 m_Pos = { 0, 0 };
 };
@@ -48,6 +51,8 @@ int main()
 	Cure::Application* app = Cure::CreateApp(p);
 
 	Cure::Scene* scene = new Cure::Scene();
+
+	Cure::AssetManager::Get().LoadAsset("comic_sans_16", new Cure::FontAsset("C:/Windows/fonts/Comic.ttf", 64));
 
 	Cure::Object* player = new Cure::Object("Player");
 	player->AddComponent<Cure::TransformComponent>();
