@@ -75,9 +75,6 @@
     <ClInclude Include="Assets\Asset.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\AssetType.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\Font\FontAsset.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>

@@ -150,7 +150,6 @@
     <ClInclude Include="Application\ApplicationParameters.h" />
     <ClInclude Include="Assets\Asset.h" />
     <ClInclude Include="Assets\AssetManager\AssetManager.h" />
-    <ClInclude Include="Assets\AssetType.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Cure.h" />
     <ClInclude Include="Assets\Font\FontAsset.h" />

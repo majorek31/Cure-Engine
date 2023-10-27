@@ -23,3 +23,7 @@
 #include "Input/Input.h"
 #include "Utils/Math.h"
 #include "Utils/DebugTimer.h"
+
+#include "Assets/Asset.h"
+#include "Assets/Font/FontAsset.h"
+#include "Assets/AssetManager/AssetManager.h"
