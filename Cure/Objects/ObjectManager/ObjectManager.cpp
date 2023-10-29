@@ -2,7 +2,10 @@
 
 
 namespace Cure {
-
+	ObjectManager::ObjectManager()
+	{
+		m_Objects.reserve(0xFFFF);
+	}
 	ObjectManager::~ObjectManager()
 	{
 		for (Object* obj : m_Objects)

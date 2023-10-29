@@ -9,6 +9,7 @@ namespace Cure {
 	class CURE_API ObjectManager
 	{
 	public:
+		ObjectManager();
 		~ObjectManager();
 		void RegisterObject(Object* obj);
 		void DestroyObject(Object* obj);
