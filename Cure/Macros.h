@@ -11,8 +11,8 @@
 #define CURE_API __declspec(dllimport)
 #endif
 
-#define CURE_ASSERT(x) \
-	if (!x) { std::cerr << "\n\tAssertion (" << #x << ") failed at " << __FUNCDNAME__ << " in " __FILE__ << "\n"; __debugbreak(); }
+#define CURE_ASSERT(x, ...) \
+	if (!x) { std::cerr << "\nAssertion (" << #x << ") failed at " << __FUNCTION__  << " in " __FILE__ << "\nInfo:" << __VA_ARGS__ << "\n"; __debugbreak(); }
 
 #define CURE_UNIMPLEMENTED() \
-	std::cerr << "\n\tUnimplemented function: " << __FUNCDNAME__ << " in " __FILE__ << "\n"; __debugbreak();
+	std::cerr << "\n\tUnimplemented function: " << __FUNCTION__  << " in " __FILE__ << "\n"; __debugbreak();
