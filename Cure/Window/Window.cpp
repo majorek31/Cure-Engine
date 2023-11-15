@@ -10,9 +10,13 @@ namespace Cure {
 	Window::Window(WindowParameters& params)
 	{
 		m_SDLWindow = SDL_CreateWindow(params.title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, params.width, params.height, params.flags);
-		CURE_ASSERT(m_SDLWindow);
+		CURE_ASSERT(m_SDLWindow, SDL_GetError());
 		m_SDLRenderer = SDL_CreateRenderer(m_SDLWindow, -1, 0);
-		CURE_ASSERT(m_SDLRenderer);
+		CURE_ASSERT(m_SDLRenderer, SDL_GetError());
+		m_ScreenSize = { 
+			static_cast<float>(params.width),
+			static_cast<float>(params.height)
+		};
 	}
 
 	Window::~Window()
@@ -32,13 +36,28 @@ namespace Cure {
 		}
 	}
 
-	void Window::SetColor(SDL_Color color)
+	void Window::SetCamera(Camera* cam)
 	{
-		SDL_SetRenderDrawColor(m_SDLRenderer, color.r, color.g, color.b, color.a);
+		m_CurrentCamera = cam;
 	}
 
-	void Window::Clear()
+	Camera* Window::GetCamera()
 	{
+		return m_CurrentCamera;
+	}
+
+	Vec2 Window::GetScreenSize()
+	{
+		return m_ScreenSize;
+	}
+
+	void Window::SetColor(SDL_Color color) {
+		SDL_SetRenderDrawColor(m_SDLRenderer, color.r, color.g, color.b, color.a);
+
+	}
+	void Window::Clear(SDL_Color color)
+	{
+		SetColor(color);
 		SDL_RenderClear(m_SDLRenderer);
 	}
 
@@ -80,9 +99,15 @@ namespace Cure {
 			SDL_RenderDrawPointF(m_SDLRenderer, point.x, point.y);
 		}
 	}
-	void Window::RenderText(Vec2 pos, FontAsset* font, const std::string& text, SDL_Color color)
+	void Window::RenderText(Vec2 pos, FontAsset* font, const std::string& text, SDL_Color color, bool blend = true)
 	{
-		SDL_Surface* surface = TTF_RenderText_Solid(font->GetNativeFont(), text.c_str(), color);
+		SDL_Surface* surface = nullptr;
+		if (blend)
+			surface = TTF_RenderText_Blended(font->GetNativeFont(), text.c_str(), color);
+		else 
+			surface = TTF_RenderText_Solid(font->GetNativeFont(), text.c_str(), color);
+		CURE_ASSERT(surface, SDL_GetError());
+
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(m_SDLRenderer, surface);
 		SDL_FRect rect = { pos.x, pos.y, surface->w, surface->h };
 		SDL_RenderCopyF(m_SDLRenderer, texture, 0, &rect);

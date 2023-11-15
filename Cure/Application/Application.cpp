@@ -1,6 +1,9 @@
 #include "Application.h"
 #include "ApplicationParameters.h"
 #include "../Utils/DebugTimer.h"
+#include "../Assets/AssetManager/AssetManager.h"
+#include <string>
+
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -10,7 +13,7 @@ namespace Cure {
 
 	Application* CreateApp(Cure::ApplicationParameters& params)
 	{
-		SDL_Init(SDL_INIT_EVERYTHING);
+		SDL_Init(SDL_INIT_VIDEO);
 		TTF_Init();
 
 		Application::s_Instance = new Application(params);
@@ -22,13 +25,12 @@ namespace Cure {
 	{
 		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "3");
 		m_Window = new Window(params.wndParams);
-		CURE_ASSERT(m_Window);
 
 		m_SceneManager = new SceneManager();
-		CURE_ASSERT(m_SceneManager);
 
 		m_TimeController = new TimeController(params.frameRate);
-		CURE_ASSERT(m_TimeController);
+		
+		m_Window->SetCamera(new Camera({-20, 0}, 90));
 	}
 
 	Application::~Application()
@@ -61,9 +63,14 @@ namespace Cure {
 	{
 		return m_IsRunning;
 	}
-	const float Application::GetDeltaTime() const
+	const double Application::GetDeltaTime() const
 	{
-		return m_TimeController->m_Delta;
+		auto delta = std::chrono::duration<float>(m_TimeController->m_Delta.count());
+		return delta.count() / 1000.0;
+	}
+	uint64_t Application::GetTicks()
+	{
+		return SDL_GetTicks64();
 	}
 	void Application::Shutdown()
 	{
@@ -71,7 +78,6 @@ namespace Cure {
 	}
 	void Application::Run()
 	{
-		m_SceneManager->Start();
 		m_IsRunning = true;
 		while (m_IsRunning) {
 			m_TimeController->FrameStart();
@@ -79,6 +85,7 @@ namespace Cure {
 
 			m_SceneManager->Update();
 
+			m_Window->Clear(Cure::COLOR_BLACK);
 			m_SceneManager->Render();
 			m_Window->RenderPresent();
 			m_TimeController->FrameEnd();

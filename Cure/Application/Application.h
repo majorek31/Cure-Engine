@@ -8,6 +8,7 @@
 
 namespace Cure {
 	class SceneManager;
+	class Window;
 	class CURE_API Application
 	{
 	public:
@@ -20,7 +21,8 @@ namespace Cure {
 		Window& GetWindow();
 		SceneManager& GetSceneManager();
 		bool IsRunning() const;
-		const float GetDeltaTime() const;
+		const double GetDeltaTime() const;
+		uint64_t GetTicks();
 
 		void Shutdown();
 		void Run();
