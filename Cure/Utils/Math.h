@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <math.h>
 
 struct Vec2 {
@@ -15,6 +16,12 @@ struct Vec2 {
 	}
 	float Magnitude() {
 		return sqrt(x * x + y * y);
+	}
+	float Distance(Vec2& dst) {
+		return (dst - *this).Magnitude();
+	}
+	float Angle(Vec2& dst) {
+		return std::atan2f(dst.x - x, dst.y - y) * 180 / 3.1415;
 	}
 	Vec2& Normalize() {
 		float mag = Magnitude();
@@ -53,7 +60,16 @@ struct Vec2 {
 		*this = *this - b;
 		return *this;
 	}
-
+	bool operator==(const Vec2& b) {
+		if (x != b.x)
+			return false;
+		if (y != b.y)
+			return false;
+		return true;
+	}
+	bool operator!=(const Vec2& b) {
+		return !(*this == b);
+	}
 	friend std::ostream& operator <<(std::ostream& out, const Vec2& B) {
 		return out << B.x << " " << B.y;
 	}
