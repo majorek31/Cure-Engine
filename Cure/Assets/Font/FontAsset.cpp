@@ -8,7 +8,7 @@ namespace Cure {
 		: m_Size(size)
 	{		
 		m_NativeAsset = TTF_OpenFont(path.c_str(), size);
-		CURE_ASSERT(m_NativeAsset);
+		CURE_ASSERT(m_NativeAsset, SDL_GetError());
 	}
 
 	FontAsset::~FontAsset()

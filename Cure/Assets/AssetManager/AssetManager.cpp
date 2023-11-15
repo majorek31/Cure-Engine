@@ -10,6 +10,9 @@ namespace Cure {
 	}
 	Asset& AssetManager::LoadAsset(const std::string name, Asset* asset)
 	{
+#ifdef _DEBUG
+		std::cout << "[DEBUG] loading asset \"" << name << "\"\n";
+#endif
 		asset->SetName(name);
 		m_Assets.push_back(asset);
 		return *asset;
