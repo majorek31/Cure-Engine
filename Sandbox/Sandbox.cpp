@@ -1,44 +1,79 @@
 ﻿#include <iostream>
+#include <sstream>
 #include <Cure.h>
+class FPSComponent : public Cure::Component {
+public:
+	void Start()
+	{
+		std::cout << "Hello from " << GetOwner()->GetComponent<Cure::TagComponent>()->GetTag() << "\n";
+	}
+	void Update()
+	{
 
-class HelloComponent : public Cure::Component {
-	
+	}
+	void Render()
+	{
+		Cure::Application& app = Cure::Application::Get();
+		Cure::Window& wnd = app.Get().GetWindow();
+		Cure::Camera* cam = wnd.GetCamera();
+
+		auto asset = Cure::AssetManager::Get().GetAsset<Cure::FontAsset>("comic_sans_16");
+		std::stringstream ss;
+		ss << "FPS: " << app.GetFPS() << "(" << app.GetDeltaTime() << "s)";
+		wnd.RenderText({0, 0}, asset, ss.str(), Cure::COLOR_WHITE, true);
+	}
+};
+class MouseFollowerComponent : public Cure::Component 
+{
 public:
 	void Start() override
 	{
-		Cure::TagComponent* tagComp = GetOwner()->GetComponent<Cure::TagComponent>();
-		std::cout << "Hello from " << tagComp->GetTag();
-		m_Pos = { 0 };
 	}
+
 
 	void Update() override
 	{
-		Cure::Input& input = Cure::Input::Get();
-		Cure::TransformComponent* transform = GetOwner()->GetComponent<Cure::TransformComponent>();
-		if (input.IsKeyDown(Cure::ScanCode::KEY_ESCAPE))
-			Cure::Application::Get().Shutdown();
-		Vec2 mousePos = input.GetMousePos();
-		mousePos -= {25, 25};
-		Vec2 direction = mousePos - transform->m_Position;
-
-		transform->m_Velocity = direction * 3;
+		auto transform = GetOwner()->GetComponent<Cure::TransformComponent>();
+		Vec2 direction = Cure::Input::Get().GetMousePos() - transform->m_Position;
+		transform->m_Velocity = direction;
 	}
+
 
 	void Render() override
 	{
-		Cure::Window& wnd = Cure::Application::Get().GetWindow();
-		Cure::TagComponent* tagComp = GetOwner()->GetComponent<Cure::TagComponent>();
-		wnd.SetColor({ 255, 0, 0, 255 });
-		wnd.Clear();
-		Vec2 pos = GetOwner()->GetComponent<Cure::TransformComponent>()->m_Position;
-		wnd.RenderRectFilled(pos, { 50, 50 }, { 0, 0, 255, 255 });
-		wnd.RenderCircleOutline(Cure::Input::Get().GetMousePos(), 35.3553390593, { 0, 255, 0, 255 });
-		wnd.RenderText(pos, Cure::AssetManager::Get().GetAsset<Cure::FontAsset>("comic_sans_16"), tagComp->GetTag(), { 255,255,255,255 });
+		auto transform = GetOwner()->GetComponent<Cure::TransformComponent>();
+		Cure::Application::Get().GetWindow().RenderRectFilled(transform->m_Position, {50, 50}, Cure::COLOR_WHITE);
 	}
-	Vec2 m_Pos = { 0, 0 };
+
 };
+class Player : public Cure::Object {
+public:
+	Player() 
+		: Object("Player")
+	{
+		AddComponent<Cure::TransformComponent>();
+		AddComponent<MouseFollowerComponent>();
+	}
+};
+class TestComponent : public Cure::Component {
+
+public:
+	void Start() override
+	{
+	}
 
 
+	void Update() override
+	{
+	}
+
+
+	void Render() override
+	{
+		Cure::Application::Get().GetWindow().RenderRectFilled({ 0, 60 }, { 40, 40 }, Cure::COLOR_WHITE);
+	}
+
+};
 int main()
 {
 	Cure::ApplicationParameters p;
@@ -49,17 +84,19 @@ int main()
 	p.wndParams.height = 800;
 	p.frameRate = 120;
 	Cure::Application* app = Cure::CreateApp(p);
-
 	Cure::Scene* scene = new Cure::Scene();
-
-	Cure::AssetManager::Get().LoadAsset("comic_sans_16", new Cure::FontAsset("C:/Windows/fonts/Comic.ttf", 64));
-
-	Cure::Object* player = new Cure::Object("Player");
-	player->AddComponent<Cure::TransformComponent>();
-	player->AddComponent<HelloComponent>();
-	scene->GetObjectManager().RegisterObject(player);
+	Cure::AssetManager::Get().LoadAsset("arial_16", new Cure::FontAsset("C:/Windows/fonts/Arial.ttf", 16));
+	Cure::AssetManager::Get().LoadAsset("comic_sans_16", new Cure::FontAsset("C:/Windows/fonts/Comic.ttf", 16));
 
 	app->GetSceneManager().LoadScene(scene);
+	app->GetSceneManager().GetCurrentScene().GetObjectManager().GetObjectByTag<Cure::Camera>("Camera")->AddComponent<FPSComponent>();
+	scene->GetObjectManager().RegisterObject(new Player());
+	for (int i = 0; i < 150'000; i++) {
+		Cure::Object* obj = new Cure::Object();
+		obj->AddComponent<TestComponent>();
+		scene->GetObjectManager().RegisterObject(obj);
+		
+	}
 	app->Run();
 
 	delete app;
