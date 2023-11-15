@@ -4,12 +4,14 @@ namespace Cure {
 
 	Object::Object(const std::string& tag)
 	{
+		m_Components.reserve(0x1000);
 		AddComponent<TagComponent>(tag);
 	}
 
 	Object::Object()
+		: Object("OBJECT")
 	{
-		AddComponent<TagComponent>("OBJECT");
+
 	}
 
 	Object::~Object()

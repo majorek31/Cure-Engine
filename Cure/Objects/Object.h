@@ -1,10 +1,9 @@
 #pragma once
 #include <unordered_map>
 #include <typeinfo>
-#include "../Application/Application.h"
+#include <string>
 #include "../Components/Component.h"
 #include "../Macros.h"
-
 namespace Cure {
 	class CURE_API Object
 	{
@@ -19,8 +18,9 @@ namespace Cure {
 				return GetComponent<T>();
 			size_t tag = typeid(T).hash_code();
 			Component* comp = reinterpret_cast<Component*>(new T(args...));
-			m_Components.emplace(tag, comp);
 			comp->SetOwner(this);
+			m_Components.emplace(tag, comp);
+			comp->Initialize();
 			return (T*)comp;
 		}
 
@@ -31,6 +31,7 @@ namespace Cure {
 
 		template<typename T>
 		T* GetComponent() {
+			CURE_ASSERT(this, "'this' was null in current context");
 			for (const auto& entry : m_Components)
 			{
 				if (entry.first == typeid(T).hash_code())
