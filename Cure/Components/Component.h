@@ -3,6 +3,7 @@
 
 namespace Cure {
 	class Object;
+	class ObjectManager;
 	class CURE_API Component
 	{
 	public:
@@ -12,7 +13,11 @@ namespace Cure {
 		Cure::Object* GetOwner();
 	private:
 		void SetOwner(Cure::Object* owner);
+		void Initialize();
+	private:
 		Cure::Object* m_Owner = nullptr;
+		bool m_IsInitialized = false;
 		friend class Cure::Object;
+		friend class Cure::ObjectManager;
 	};
 }

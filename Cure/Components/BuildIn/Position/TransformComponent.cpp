@@ -19,8 +19,8 @@ namespace Cure {
 	{
 		float deltaTime = Cure::Application::Get().GetDeltaTime();
 		m_Position += m_Velocity * deltaTime;
-		constexpr float braking = 1.2f;
 		/*
+				constexpr float braking = 3.2f;
 		if (m_Velocity.x > 0)
 			m_Velocity.x -= braking;
 		if (m_Velocity.x < 0)
@@ -37,10 +37,10 @@ namespace Cure {
 
 		if (m_Velocity.y > -1.f && m_Velocity.y < 1.f)
 			m_Velocity.y = 0;
+
+
 		*/
-
 	}
-
 	void TransformComponent::Render() {}
 
 }

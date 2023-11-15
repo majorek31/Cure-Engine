@@ -11,4 +11,11 @@ namespace Cure {
 	{
 		m_Owner = owner;
 	}
+	void Component::Initialize()
+	{
+		if (m_IsInitialized)
+			return;
+		m_IsInitialized = true;
+		Start();
+	}
 }
