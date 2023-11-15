@@ -11,9 +11,9 @@ namespace Cure {
 	public:
 		void Update(SDL_Event& event);
 
-		Vec2 GetMousePos();
-		bool IsMousePressed(MouseButton button);
-		bool IsKeyDown(ScanCode key);
+		Vec2 GetMousePos() const;
+		bool IsMousePressed(MouseButton button) const;
+		bool IsKeyPressed(ScanCode key) const;
 		static Input& Get();
 	private:
 		static Input* s_Instance;
