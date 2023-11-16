@@ -150,6 +150,8 @@
     <ClInclude Include="Application\ApplicationParameters.h" />
     <ClInclude Include="Assets\Asset.h" />
     <ClInclude Include="Assets\AssetManager\AssetManager.h" />
+    <ClInclude Include="Components\BuildIn\Display\Sprite\SpriteComponent.h" />
+    <ClInclude Include="Assets\Sprite\SpriteAsset.h" />
     <ClInclude Include="Window\Camera\Camera.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Cure.h" />
@@ -173,6 +175,8 @@
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Assets\Asset.cpp" />
     <ClCompile Include="Assets\AssetManager\AssetManager.cpp" />
+    <ClCompile Include="Components\BuildIn\Display\Sprite\SpriteComponent.cpp" />
+    <ClCompile Include="Assets\Sprite\SpriteAsset.cpp" />
     <ClCompile Include="Window\Camera\Camera.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Assets\Font\FontAsset.cpp" />
