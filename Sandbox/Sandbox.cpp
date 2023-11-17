@@ -70,6 +70,7 @@ int main()
 	Cure::Scene* scene = new Cure::Scene();
 	Cure::AssetManager::Get().LoadAsset("arial_16", new Cure::FontAsset("C:/Windows/fonts/Arial.ttf", 16));
 	Cure::AssetManager::Get().LoadAsset("comic_sans_16", new Cure::FontAsset("C:/Windows/fonts/Comic.ttf", 16));
+	Cure::AssetManager::Get().LoadAsset("star_img", new Cure::SpriteAsset("star.png"));
 
 	app->GetSceneManager().LoadScene(scene);
 	app->GetSceneManager().GetCurrentScene().GetObjectManager().GetObjectByTag<Cure::Camera>("Camera")->AddComponent<FPSComponent>();
