@@ -26,6 +26,7 @@
 
 #include "Assets/Asset.h"
 #include "Assets/Font/FontAsset.h"
+#include "Assets/Sprite/SpriteAsset.h"
 #include "Assets/AssetManager/AssetManager.h"
 
 #include "Window/Camera/Camera.h"

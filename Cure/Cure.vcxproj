@@ -73,12 +73,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)-$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Platform)-$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)lib\SDL-TTF\include;$(SolutionDir)lib\SDL\include</IncludePath>
-    <LibraryPath>$(SolutionDir)lib\SDL-TTF\lib;$(SolutionDir)lib\SDL\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(SolutionDir)lib\SDL-IMAGE\include;$(SolutionDir)lib\SDL-TTF\include;$(SolutionDir)lib\SDL\include</IncludePath>
+    <LibraryPath>$(SolutionDir)lib\SDL-IMAGE\lib;$(SolutionDir)lib\SDL-TTF\lib;$(SolutionDir)lib\SDL\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)lib\SDL-TTF\include;$(SolutionDir)lib\SDL\include</IncludePath>
-    <LibraryPath>$(SolutionDir)lib\SDL-TTF\lib;$(SolutionDir)lib\SDL\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(SolutionDir)lib\SDL-IMAGE\include;$(SolutionDir)lib\SDL-TTF\include;$(SolutionDir)lib\SDL\include</IncludePath>
+    <LibraryPath>$(SolutionDir)lib\SDL-IMAGE\lib;$(SolutionDir)lib\SDL-TTF\lib;$(SolutionDir)lib\SDL\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)-$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Platform)-$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -123,8 +123,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL-TTF\lib;$(SolutionDir)lib\SDL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL-IMAGE\lib;$(SolutionDir)lib\SDL-TTF\lib;$(SolutionDir)lib\SDL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,8 +141,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL-TTF\lib;$(SolutionDir)lib\SDL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL-IMAGE\lib;$(SolutionDir)lib\SDL-TTF\lib;$(SolutionDir)lib\SDL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ public:
 
 		auto asset = Cure::AssetManager::Get().GetAsset<Cure::FontAsset>("comic_sans_16");
 		std::stringstream ss;
-		ss << "FPS: " << app.GetFPS() << "(" << app.GetDeltaTime() << "s)";
+		ss << "FPS: " << app.GetFPS() << "(frame time: " << app.GetDeltaTime() << "s)";
 		wnd.RenderText({0, 0}, asset, ss.str(), Cure::COLOR_WHITE, true);
 	}
 };
@@ -28,6 +28,7 @@ class MouseFollowerComponent : public Cure::Component
 public:
 	void Start() override
 	{
+
 	}
 
 
@@ -55,25 +56,7 @@ public:
 		AddComponent<MouseFollowerComponent>();
 	}
 };
-class TestComponent : public Cure::Component {
 
-public:
-	void Start() override
-	{
-	}
-
-
-	void Update() override
-	{
-	}
-
-
-	void Render() override
-	{
-		Cure::Application::Get().GetWindow().RenderRectFilled({ 0, 60 }, { 40, 40 }, Cure::COLOR_WHITE);
-	}
-
-};
 int main()
 {
 	Cure::ApplicationParameters p;
@@ -91,12 +74,6 @@ int main()
 	app->GetSceneManager().LoadScene(scene);
 	app->GetSceneManager().GetCurrentScene().GetObjectManager().GetObjectByTag<Cure::Camera>("Camera")->AddComponent<FPSComponent>();
 	scene->GetObjectManager().RegisterObject(new Player());
-	for (int i = 0; i < 150'000; i++) {
-		Cure::Object* obj = new Cure::Object();
-		obj->AddComponent<TestComponent>();
-		scene->GetObjectManager().RegisterObject(obj);
-		
-	}
 	app->Run();
 
 	delete app;
