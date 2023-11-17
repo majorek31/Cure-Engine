@@ -1,13 +1,17 @@
 #pragma once
 #include <SDL.h>
 #include "../Asset.h"
+#include "../../Utils/Math.h"
 namespace Cure {
-	class SpriteAsset : Asset
+	class CURE_API SpriteAsset : public Asset
 	{
 	public:
-		size_t GetType();
-
+		SpriteAsset(const std::string& path);
+		~SpriteAsset();
+		Vec2 GetSize();
+		SDL_Surface* GetSurface();
+		size_t GetType() override;
 	private:
-		SDL_Texture* m_Texture;
+		Vec2 m_Size;
 	};
 }
