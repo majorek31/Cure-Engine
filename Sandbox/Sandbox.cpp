@@ -20,7 +20,7 @@ public:
 		auto asset = Cure::AssetManager::Get().GetAsset<Cure::FontAsset>("comic_sans_16");
 		std::stringstream ss;
 		ss << "FPS: " << app.GetFPS() << "(frame time: " << app.GetDeltaTime() << "s)";
-		wnd.RenderText({0, 0}, asset, ss.str(), Cure::COLOR_WHITE, true);
+		wnd.RenderText({0, 0}, asset, ss.str(), Cure::COLOR_WHITE);
 	}
 };
 class MouseFollowerComponent : public Cure::Component 
@@ -43,6 +43,7 @@ public:
 	void Render() override
 	{
 		auto transform = GetOwner()->GetComponent<Cure::TransformComponent>();
+		Cure::Application::Get().GetWindow().RenderTexture({ 0, 80 }, Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("star_img"), { 0, 0 });
 		Cure::Application::Get().GetWindow().RenderRectFilled(transform->m_Position, {50, 50}, Cure::COLOR_WHITE);
 	}
 

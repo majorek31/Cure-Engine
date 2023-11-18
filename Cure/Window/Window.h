@@ -5,6 +5,7 @@
 #include "../Utils/Math.h"
 
 #include "../Assets/Font/FontAsset.h"
+#include "../Assets/Sprite/SpriteAsset.h"
 #include "Camera/Camera.h"
 
 namespace Cure {
@@ -32,12 +33,20 @@ namespace Cure {
 
 		void RenderCircleOutline(Vec2 pos, float radius, SDL_Color color);
 
-		void RenderText(Vec2 pos, FontAsset* font, const std::string& text, SDL_Color color, bool blend);
+		void RenderText(Vec2 pos, FontAsset* font, const std::string& text, SDL_Color color, bool blend = true);
+
+		void RenderTexture(Vec2 pos, SpriteAsset* sprite);
+		void RenderTexture(Vec2 pos, SpriteAsset* sprite, float angle);
+		void RenderTexture(Vec2 pos, SpriteAsset* sprite, Vec2 size);
+		void RenderTexture(Vec2 pos, SpriteAsset* sprite, Vec2 size, float angle);
+	private:
+		SDL_Texture* CreateTextureFromSurface(SDL_Surface* surf);
 	private:
 		SDL_Window* m_SDLWindow;
 		SDL_Renderer* m_SDLRenderer;
 		Camera* m_CurrentCamera;
 		Vec2 m_ScreenSize;
+		friend class SpriteAsset;
 	};
 }
 

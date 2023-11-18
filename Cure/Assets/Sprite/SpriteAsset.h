@@ -9,7 +9,7 @@ namespace Cure {
 		SpriteAsset(const std::string& path);
 		~SpriteAsset();
 		Vec2 GetSize();
-		SDL_Surface* GetSurface();
+		SDL_Texture* GetTexture();
 		size_t GetType() override;
 	private:
 		Vec2 m_Size;

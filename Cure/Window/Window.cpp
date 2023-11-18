@@ -4,6 +4,7 @@
 #include "../Input/Input.h"
 
 #include <SDL_ttf.h>
+#include "../Assets/Sprite/SpriteAsset.h"
 
 namespace Cure {
 
@@ -99,7 +100,7 @@ namespace Cure {
 			SDL_RenderDrawPointF(m_SDLRenderer, point.x, point.y);
 		}
 	}
-	void Window::RenderText(Vec2 pos, FontAsset* font, const std::string& text, SDL_Color color, bool blend = true)
+	void Window::RenderText(Vec2 pos, FontAsset* font, const std::string& text, SDL_Color color, bool blend)
 	{
 		SDL_Surface* surface = nullptr;
 		if (blend)
@@ -114,5 +115,33 @@ namespace Cure {
 
 		SDL_FreeSurface(surface);
 		SDL_DestroyTexture(texture);
+	}
+	void Window::RenderTexture(Vec2 pos, SpriteAsset* sprite) {
+		RenderTexture(pos, sprite, { 0, 0 });
+	}
+	void Window::RenderTexture(Vec2 pos, SpriteAsset* sprite, Vec2 size) {
+		RenderTexture(pos, sprite, size, 0);
+	}
+	void Window::RenderTexture(Vec2 pos, SpriteAsset* sprite, float angle) {
+		RenderTexture(pos, sprite, { 0, 0 }, angle);
+	}
+	void Window::RenderTexture(Vec2 pos, SpriteAsset* sprite, Vec2 size, float angle)
+	{
+		if (!size.x || !size.y)
+			size = sprite->GetSize();
+		SDL_FRect rect;
+		rect.x = pos.x;
+		rect.y = pos.y;
+		rect.w = size.x;
+		rect.h = size.y;
+			
+		SDL_FPoint center;
+		center.x = pos.x + size.x / 2;
+		center.y = pos.y + size.y / 2;
+		SDL_RenderCopyExF(m_SDLRenderer, sprite->GetTexture(), 0, &rect, angle, &center, SDL_FLIP_NONE);
+	}
+	SDL_Texture* Window::CreateTextureFromSurface(SDL_Surface* surf)
+	{
+		return SDL_CreateTextureFromSurface(m_SDLRenderer, surf);
 	}
 }
