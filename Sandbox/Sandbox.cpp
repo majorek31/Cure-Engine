@@ -9,7 +9,8 @@ public:
 	}
 	void Update()
 	{
-
+		if (Cure::Input::Get().IsMousePressed(Cure::MouseButton::LEFT))
+			m_ClickCount++;
 	}
 	void Render()
 	{
@@ -19,9 +20,11 @@ public:
 
 		auto asset = Cure::AssetManager::Get().GetAsset<Cure::FontAsset>("comic_sans_16");
 		std::stringstream ss;
-		ss << "FPS: " << app.GetFPS() << "(frame time: " << app.GetDeltaTime() << "s)";
+		ss << "FPS: " << app.GetFPS() << "(frame time: " << app.GetDeltaTime() << "s) " << "Clicks: " << m_ClickCount;
 		wnd.RenderText({0, 0}, asset, ss.str(), Cure::COLOR_WHITE);
 	}
+private:
+	int m_ClickCount = 0;
 };
 class MouseFollowerComponent : public Cure::Component 
 {
@@ -43,8 +46,7 @@ public:
 	void Render() override
 	{
 		auto transform = GetOwner()->GetComponent<Cure::TransformComponent>();
-		Cure::Application::Get().GetWindow().RenderTexture({ 0, 80 }, Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("star_img"), { 0, 0 });
-		Cure::Application::Get().GetWindow().RenderRectFilled(transform->m_Position, {50, 50}, Cure::COLOR_WHITE);
+		Cure::Application::Get().GetWindow().RenderTexture(transform->m_Position, Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("star_img"), {40, 40});
 	}
 
 };
