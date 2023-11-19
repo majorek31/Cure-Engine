@@ -139,7 +139,9 @@ namespace Cure {
 		SDL_FPoint center;
 		center.x = pos.x + size.x / 2;
 		center.y = pos.y + size.y / 2;
-		SDL_RenderCopyExF(m_SDLRenderer, sprite->GetTexture(), 0, &rect, angle, &center, SDL_FLIP_NONE);
+		SDL_RenderCopyExF(m_SDLRenderer, sprite->GetTexture(), 0, &rect, angle, 0, SDL_FLIP_NONE);
+		SetColor({ 255,0,0,255 });
+		SDL_RenderDrawPointF(m_SDLRenderer, center.x, center.y);
 	}
 	SDL_Texture* Window::CreateTextureFromSurface(SDL_Surface* surf)
 	{
