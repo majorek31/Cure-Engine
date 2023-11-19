@@ -29,6 +29,7 @@ namespace Cure {
 	void Window::HandleEvents()
 	{
 		SDL_Event e;
+		Cure::Input::Get().ClearInputs();
 		while (SDL_PollEvent(&e))
 		{
 			if (e.type == SDL_EventType::SDL_QUIT)
