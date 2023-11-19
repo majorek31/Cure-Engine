@@ -6,17 +6,21 @@
 namespace Cure {
 
 	Cure::Input* Input::s_Instance = nullptr;
-
+	void Input::ClearInputs() {
+		m_MouseState.clear();
+		m_KeyboardState.clear();
+	}
 	void Input::Update(SDL_Event& event)
 	{
-		if (event.type == SDL_EventType::SDL_MOUSEBUTTONDOWN) {
-			m_KBState = (uint8_t*)SDL_GetKeyboardState(0);
-			m_MouseState[event.button.button - 1] = true;
+		switch (event.type) {
+		case SDL_KEYDOWN:
+			m_KeyboardState.emplace((ScanCode)event.key.keysym.scancode, (bool)event.key.repeat);
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			m_MouseState.emplace((MouseButton)((int)event.button.button - 1), true);
+			break;
 		}
-		if (event.type == SDL_EventType::SDL_MOUSEBUTTONUP) {
-			m_MouseState[event.button.button - 1] = false;
-		}
-		m_KBState = (uint8_t*)SDL_GetKeyboardState(0);
 	}
 
 	Vec2 Input::GetMousePos() const
@@ -41,14 +45,36 @@ namespace Cure {
 		return out;
 	}
 
-	bool Input::IsMousePressed(MouseButton button) const
+	bool Input::GetMouse(MouseButton button) const
 	{
-		return m_MouseState[(int)button];
+		Uint32 mouseState = SDL_GetMouseState(0, 0);
+		if (mouseState & SDL_BUTTON((int)button + 1))
+			return true;
+		return false;
 	}
 
-	bool Input::IsKeyPressed(ScanCode key) const
+	bool Input::GetMouseDown(MouseButton button) const
 	{
-		return m_KBState[(int)(key)];
+		for (const auto& state : m_MouseState) {
+			if (state.first == button)
+				return true;
+		}
+		return false;
+	}
+
+	bool Input::GetKey(ScanCode key) const
+	{
+		uint8_t* kb = (uint8_t*)SDL_GetKeyboardState(0);
+		return kb[(int)key];
+	}
+
+	bool Input::GetKeyDown(ScanCode key) const
+	{
+		for (const auto& state : m_KeyboardState) {
+			if (state.first == key)
+				return true;
+		}
+		return false;
 	}
 
 	Cure::Input& Input::Get()

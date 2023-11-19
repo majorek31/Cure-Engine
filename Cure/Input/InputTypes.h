@@ -257,7 +257,7 @@ namespace Cure {
         KEY_SOFTRIGHT = 288,
         KEY_CALL = 289,
         KEY_ENDCALL = 290,
-        SDL_NUM_SCANCODES = 512
+        CURE_NUM_SCANCODES = 512
     };
 
 }

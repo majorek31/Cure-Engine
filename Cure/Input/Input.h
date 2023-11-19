@@ -4,6 +4,7 @@
 #include "../Utils/Math.h"
 #include <iostream>
 #include <SDL.h>
+#include <unordered_map>
 
 namespace Cure {
 	class CURE_API Input
@@ -12,16 +13,23 @@ namespace Cure {
 		void Update(SDL_Event& event);
 
 		Vec2 GetMousePos() const;
-		bool IsMousePressed(MouseButton button) const;
-		bool IsKeyPressed(ScanCode key) const;
+		bool GetMouse(MouseButton button) const;
+		bool GetMouseDown(MouseButton button) const;
+
+		bool GetKey(ScanCode key) const;
+		bool GetKeyDown(ScanCode key) const;
 		static Input& Get();
 	private:
 		static Input* s_Instance;
 		Input();
 		Input(Input&) = delete;
 		Input(const Input&) = delete;
-		uint8_t* m_KBState;
-		bool m_MouseState[10];
+		void ClearInputs();
+
+		std::unordered_map<ScanCode, bool> m_KeyboardState;
+		std::unordered_map<MouseButton, bool> m_MouseState;
+
+		friend class Window;
 	};
 }
 
