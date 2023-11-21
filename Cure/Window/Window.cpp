@@ -14,7 +14,7 @@ namespace Cure {
 		CURE_ASSERT(m_SDLWindow, SDL_GetError());
 		m_SDLRenderer = SDL_CreateRenderer(m_SDLWindow, -1, 0);
 		CURE_ASSERT(m_SDLRenderer, SDL_GetError());
-		m_ScreenSize = { 
+		m_ScreenSize = {
 			static_cast<float>(params.width),
 			static_cast<float>(params.height)
 		};
@@ -106,7 +106,7 @@ namespace Cure {
 		SDL_Surface* surface = nullptr;
 		if (blend)
 			surface = TTF_RenderText_Blended(font->GetNativeFont(), text.c_str(), color);
-		else 
+		else
 			surface = TTF_RenderText_Solid(font->GetNativeFont(), text.c_str(), color);
 		CURE_ASSERT(surface, SDL_GetError());
 
@@ -135,13 +135,8 @@ namespace Cure {
 		rect.y = pos.y;
 		rect.w = size.x;
 		rect.h = size.y;
-			
-		SDL_FPoint center;
-		center.x = pos.x + size.x / 2;
-		center.y = pos.y + size.y / 2;
+
 		SDL_RenderCopyExF(m_SDLRenderer, sprite->GetTexture(), 0, &rect, angle, 0, SDL_FLIP_NONE);
-		SetColor({ 255,0,0,255 });
-		SDL_RenderDrawPointF(m_SDLRenderer, center.x, center.y);
 	}
 	SDL_Texture* Window::CreateTextureFromSurface(SDL_Surface* surf)
 	{
