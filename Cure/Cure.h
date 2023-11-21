@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef _WIN32
-	#error We only support Window for now
+	#error We only support Windows for now
 #endif
 // -----------
 #include "Macros.h"
