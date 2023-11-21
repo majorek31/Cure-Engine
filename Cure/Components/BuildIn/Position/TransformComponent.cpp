@@ -4,11 +4,13 @@
 namespace Cure {
 	TransformComponent::TransformComponent()
 		: m_Position({0, 0}),
-		  m_Velocity({ 0, 0 }) 
+		  m_Velocity({ 0, 0 }),
+		  m_Angle(0)
 	{}
 	TransformComponent::TransformComponent(Vec2 pos)
 		: m_Position(pos),
-		  m_Velocity({ 0, 0 }) 
+		  m_Velocity({ 0, 0 }),
+		  m_Angle(0)
 	{}
 	void TransformComponent::Start()
 	{
