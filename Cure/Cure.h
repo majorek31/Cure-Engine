@@ -19,6 +19,7 @@
 
 #include "Components/BuildIn/Tag/TagComponent.h"
 #include "Components/BuildIn/Position/TransformComponent.h"
+#include "Components/BuildIn/Display/Sprite/SpriteComponent.h"
 
 #include "Input/Input.h"
 #include "Utils/Math.h"
