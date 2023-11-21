@@ -4,9 +4,11 @@
 #include "../../../../Assets/Sprite/SpriteAsset.h"
 
 namespace Cure {
-	class SpriteComponent : Component
+	class CURE_API SpriteComponent : Component
 	{
 	public:
+		SpriteComponent(SpriteAsset* sprite);
+		SpriteComponent();
 		void Start();
 		void Update();
 		void Render();
@@ -15,5 +17,7 @@ namespace Cure {
 	private:
 		TransformComponent* m_ObjectTransform;
 		SpriteAsset* m_Sprite;
+	public:
+		Vec2 spriteSize = { 0, 0 };
 	};
 }

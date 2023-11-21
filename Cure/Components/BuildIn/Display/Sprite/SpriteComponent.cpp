@@ -3,6 +3,17 @@
 #include "../../../../Application/Application.h"
 
 namespace Cure {
+	SpriteComponent::SpriteComponent(SpriteAsset* sprite)
+		: m_Sprite(sprite),
+		  m_ObjectTransform(nullptr)
+	{
+
+	}
+	SpriteComponent::SpriteComponent()
+		: m_Sprite(nullptr),
+	   	  m_ObjectTransform(nullptr)
+	{
+	}
 	void SpriteComponent::Start()
 	{
 		m_ObjectTransform = GetOwner()->GetComponent<TransformComponent>();
@@ -16,7 +27,7 @@ namespace Cure {
 	{
 		if (!m_Sprite)
 			return;
-		Application::Get().GetWindow().RenderTexture(m_ObjectTransform->m_Position, m_Sprite, m_ObjectTransform->m_Angle);
+		Application::Get().GetWindow().RenderTexture(m_ObjectTransform->m_Position, m_Sprite, spriteSize, m_ObjectTransform->m_Angle);
 	}
 	void SpriteComponent::SetSprite(SpriteAsset* sprite)
 	{
