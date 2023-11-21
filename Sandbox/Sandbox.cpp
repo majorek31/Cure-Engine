@@ -50,8 +50,7 @@ public:
 
 	void Render() override
 	{
-		auto transform = GetOwner()->GetComponent<Cure::TransformComponent>();
-		Cure::Application::Get().GetWindow().RenderTexture(transform->m_Position, Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("star_img"), {40, 40}, 45);
+
 	}
 
 };
@@ -62,6 +61,10 @@ public:
 	{
 		AddComponent<Cure::TransformComponent>();
 		AddComponent<MouseFollowerComponent>();
+		auto asset = Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("star_img");
+		auto spriteComp = AddComponent<Cure::SpriteComponent>(asset);
+		spriteComp->spriteSize = { 50, 50 };
+
 	}
 };
 
