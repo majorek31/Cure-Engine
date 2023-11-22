@@ -22,6 +22,7 @@ namespace Cure {
 	void ObjectManager::DestroyObject(Object* obj)
 	{
 		m_Objects.erase(std::find(m_Objects.begin(), m_Objects.end(), obj));
+		delete obj;
 	}
 
 	int ObjectManager::GetObjectCount()
