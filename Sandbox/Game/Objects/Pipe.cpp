@@ -7,7 +7,7 @@ Pipe::Pipe(float lowerPipe)
 			
 {
 	auto transform = AddComponent<Cure::TransformComponent>();
-	transform->m_Position = { 300, 0 };
+	transform->m_Position = { 600, 0 };
 	auto pipeController = AddComponent<PipeController>();
 }
 

@@ -19,7 +19,11 @@ int main() {
 	assetMgr.LoadAsset("pipe", new Cure::SpriteAsset("assets/pipe.png"));
 	assetMgr.LoadAsset("debug_font", new Cure::FontAsset("C:/Windows/fonts/Arial.ttf", 16));
 	app->GetSceneManager().LoadScene(scene);
-	scene->GetObjectManager().GetObjectByTag<Cure::Camera>("Camera")->AddComponent<BackgroundComponent>();
+	auto camera = scene->GetObjectManager().GetObjectByTag<Cure::Camera>("Camera");
+	camera->AddComponent<BackgroundComponent>();
+#ifdef _DEBUG
+	camera->AddComponent<Cure::DebugComponent>();
+#endif
 	scene->GetObjectManager().RegisterObject(new Bird());
 	scene->GetObjectManager().RegisterObject(new Pipe(20));
 	app->Run();
