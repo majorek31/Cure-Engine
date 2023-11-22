@@ -66,11 +66,17 @@ namespace Cure {
 	const double Application::GetDeltaTime() const
 	{
 		auto delta = std::chrono::duration<float>(m_TimeController->m_Delta.count());
+		if (delta.count() < 0)
+			return 0;
 		return delta.count() / 1000.0;
 	}
 	uint64_t Application::GetTicks()
 	{
 		return SDL_GetTicks64();
+	}
+	uint64_t Application::GetFrameCount()
+	{
+		return m_TimeController->GetFrameCount();
 	}
 	void Application::Shutdown()
 	{

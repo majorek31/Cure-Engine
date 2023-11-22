@@ -24,6 +24,8 @@ namespace Cure {
 		const double GetDeltaTime() const;
 		uint64_t GetTicks();
 
+		uint64_t GetFrameCount();
+
 		void Shutdown();
 		void Run();
 	private:
