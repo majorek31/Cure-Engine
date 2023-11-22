@@ -138,12 +138,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Components\BirdController.cpp" />
+    <ClCompile Include="Game\Objects\Bird.cpp" />
+    <ClCompile Include="Game\Components\BackgroundComponent.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Game\Objects\Pipe.cpp" />
+    <ClCompile Include="Game\Components\PipeController.cpp" />
     <ClCompile Include="Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cure\Cure.vcxproj">
       <Project>{e629ac64-d0f6-4867-b873-99ae2be753aa}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\Components\BirdController.h" />
+    <ClInclude Include="Game\Objects\Bird.h" />
+    <ClInclude Include="Game\Components\BackgroundComponent.h" />
+    <ClInclude Include="Game\Objects\Pipe.h" />
+    <ClInclude Include="Game\Components\PipeController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

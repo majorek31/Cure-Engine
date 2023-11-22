@@ -9,8 +9,6 @@ public:
 	}
 	void Update()
 	{
-		if (Cure::Input::Get().GetMouse(Cure::MouseButton::LEFT))
-			m_ClickCount++;
 		if (Cure::Input::Get().GetKeyDown(Cure::ScanCode::KEY_H))
 			m_ShowFPS = !m_ShowFPS;
 	}
@@ -27,8 +25,8 @@ public:
 		if (m_ShowFPS)
 			wnd.RenderText({0, 0}, asset, ss.str(), Cure::COLOR_WHITE);
 	}
-private:
 	int m_ClickCount = 0;
+private:
 	bool m_ShowFPS = true;
 };
 class MouseFollowerComponent : public Cure::Component 
@@ -36,15 +34,15 @@ class MouseFollowerComponent : public Cure::Component
 public:
 	void Start() override
 	{
-
+		GetOwner()->GetComponent<Cure::TransformComponent>()->m_Position = { 300, 300 };
 	}
 
 
 	void Update() override
 	{
+		auto& app = Cure::Application::Get();
 		auto transform = GetOwner()->GetComponent<Cure::TransformComponent>();
-		Vec2 direction = Cure::Input::Get().GetMousePos() - transform->m_Position;
-		transform->m_Velocity = direction;
+		transform->m_Angle += 500.0 * app.GetDeltaTime();
 	}
 
 
@@ -68,7 +66,7 @@ public:
 	}
 };
 
-int main()
+/*int main()
 {
 	Cure::ApplicationParameters p;
 	p.version = 0xFFAAFFAA;
@@ -91,3 +89,4 @@ int main()
 
 	delete app;
 }
+*/
