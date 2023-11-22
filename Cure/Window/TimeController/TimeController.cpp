@@ -6,12 +6,13 @@
 namespace Cure {
 
 	TimeController::TimeController(int targetFrameRate)
-		: m_TargetFPS(targetFrameRate)
+		: m_TargetFPS(targetFrameRate),
+		  m_FrameCount(0)
 	{}
 
 	void TimeController::FrameStart()
 	{
-		
+		m_FrameCount++;
 		m_Start = std::chrono::high_resolution_clock::now();
 	}
 
@@ -30,6 +31,10 @@ namespace Cure {
 	int TimeController::GetFPS()
 	{
 		return static_cast<int>(1000.0 / m_Delta.count());
+	}
+	uint64_t TimeController::GetFrameCount()
+	{
+		return m_FrameCount;
 	}
 
 }
