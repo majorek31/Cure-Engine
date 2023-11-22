@@ -24,8 +24,9 @@ void PipeController::Render()
 	Pipe* pipe = dynamic_cast<Pipe*>(GetOwner());
 	float lowPart = pipe->GetLowerPos();
 	auto& window = Cure::Application::Get().GetWindow();
-	window.RenderTexture({ transform->m_Position.x, lowPart + 300 }, Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("pipe"));
-	window.RenderTexture({ transform->m_Position.x, lowPart - 300 }, Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("pipe"), 180.f);
+	float pipeGap = 300;
+	window.RenderTexture({ transform->m_Position.x, lowPart + pipeGap }, Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("pipe"));
+	window.RenderTexture({ transform->m_Position.x, lowPart - pipeGap }, Cure::AssetManager::Get().GetAsset<Cure::SpriteAsset>("pipe"), 180.f);
 	std::stringstream ss;
 	ss << "low part: " << lowPart;
 	window.RenderText({ 0, 0 }, Cure::AssetManager::Get().GetAsset<Cure::FontAsset>("debug_font"), ss.str(), Cure::COLOR_WHITE, true);
