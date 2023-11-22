@@ -20,7 +20,6 @@ namespace Cure {
 	void TransformComponent::Update()
 	{
 		float deltaTime = Cure::Application::Get().GetDeltaTime();
-		m_Position += m_Velocity * deltaTime;
 		/*
 				constexpr float braking = 3.2f;
 		if (m_Velocity.x > 0)
