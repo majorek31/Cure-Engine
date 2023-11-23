@@ -17,7 +17,7 @@ namespace Cure {
 		auto& window = app.GetWindow();
 		auto font = AssetManager::Get().GetAsset<FontAsset>("debug_font");
 		std::stringstream ss;
-		ss << "FPS: " << app.GetFrameCount() << " (" << app.GetDeltaTime() << "ms)";
+		ss << "FPS: " << app.GetFPS() << " (" << app.GetDeltaTime() << "ms)";
 		window.RenderText({ 0, 0 }, font, ss.str(), COLOR_WHITE, true);
 		ss.str("");
 		ss << "Objects: " << app.GetSceneManager().GetCurrentScene().GetObjectManager().GetObjectCount();
