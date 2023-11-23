@@ -21,10 +21,8 @@ int main() {
 	app->GetSceneManager().LoadScene(scene);
 	auto camera = scene->GetObjectManager().GetObjectByTag<Cure::Camera>("Camera");
 	camera->AddComponent<BackgroundComponent>();
-#ifdef _DEBUG
-	camera->AddComponent<Cure::DebugComponent>();
-#endif
 	scene->GetObjectManager().RegisterObject(new Bird());
 	scene->GetObjectManager().RegisterObject(new Pipe(20));
+	camera->AddComponent<Cure::DebugComponent>();
 	app->Run();
 }
