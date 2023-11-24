@@ -23,6 +23,6 @@ int main() {
 	camera->AddComponent<BackgroundComponent>();
 	scene->GetObjectManager().RegisterObject(new Bird());
 	scene->GetObjectManager().RegisterObject(new Pipe(20));
-	camera->AddComponent<Cure::DebugComponent>();
+	camera->AddComponent<Cure::DebugComponent>(Cure::ScanCode::KEY_F3);
 	app->Run();
 }
