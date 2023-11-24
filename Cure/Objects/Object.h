@@ -13,7 +13,7 @@ namespace Cure {
 		virtual ~Object();
 
 		template<typename T, typename... TArgs>
-		T* AddComponent(TArgs&... args) {
+		T* AddComponent(TArgs&&... args) {
 			if (HasComponent<T>())
 				return GetComponent<T>();
 			size_t tag = typeid(T).hash_code();
