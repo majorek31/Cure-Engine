@@ -2,17 +2,31 @@
 #include "../../../Objects/ObjectManager/ObjectManager.h"
 #include "../../../Application/Application.h"
 #include "../../../Assets/AssetManager/AssetManager.h"
+#include "../../../Input/Input.h"
 #include <sstream>
 namespace Cure {
+	DebugComponent::DebugComponent()
+		: m_ToogleKey(ScanCode::KEY_F3),
+		  m_IsShown(true)
+	{
+	}
+	DebugComponent::DebugComponent(ScanCode toggleKey)
+		: m_ToogleKey(toggleKey),
+		  m_IsShown(true)
+	{
+	}
 	void DebugComponent::Start()
 	{
 	}
 	void DebugComponent::Update()
 	{
-
+		if (Input::Get().GetKeyDown(m_ToogleKey))
+			m_IsShown = !m_IsShown;
 	}
 	void DebugComponent::Render()
 	{
+		if (!m_IsShown)
+			return;
 		auto& app = Application::Get();
 		auto& window = app.GetWindow();
 		auto font = AssetManager::Get().GetAsset<FontAsset>("debug_font");
