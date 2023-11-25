@@ -138,13 +138,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Scenes\GameScene.cpp" />
     <ClCompile Include="Game\Components\BirdController.cpp" />
     <ClCompile Include="Game\Objects\Bird.cpp" />
     <ClCompile Include="Game\Components\BackgroundComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Objects\Pipe.cpp" />
     <ClCompile Include="Game\Components\PipeController.cpp" />
-    <ClCompile Include="Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cure\Cure.vcxproj">
@@ -152,6 +152,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Scenes\GameScene.h" />
     <ClInclude Include="Game\Components\BirdController.h" />
     <ClInclude Include="Game\Objects\Bird.h" />
     <ClInclude Include="Game\Components\BackgroundComponent.h" />
