@@ -30,6 +30,7 @@ namespace Cure {
 			auto list = GetObjectsByTag<T>(tag);
 			return list[0];
 		}
+		std::vector<Object*>& GetAllObjects();
 	private:
 		void Start();
 		void Update();

@@ -30,6 +30,11 @@ namespace Cure {
 		return m_Objects.size();
 	}
 
+	std::vector<Object*>& ObjectManager::GetAllObjects()
+	{
+		return m_Objects;
+	}
+
 	void ObjectManager::Start()
 	{
 		for (Object* obj : m_Objects)
