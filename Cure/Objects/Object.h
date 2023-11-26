@@ -17,7 +17,7 @@ namespace Cure {
 			if (HasComponent<T>())
 				return GetComponent<T>();
 			size_t tag = typeid(T).hash_code();
-			Component* comp = reinterpret_cast<Component*>(new T(args...));
+			Component* comp = reinterpret_cast<Component*>(new T(std::forward<TArgs>(args)...));
 			comp->SetOwner(this);
 			m_Components.emplace(tag, comp);
 			comp->Initialize();

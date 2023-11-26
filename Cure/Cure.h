@@ -21,6 +21,7 @@
 #include "Components/BuildIn/Position/TransformComponent.h"
 #include "Components/BuildIn/Display/Sprite/SpriteComponent.h"
 #include "Components/BuildIn/Debug/DebugComponent.h"
+#include "Components/BuildIn/Collision/CollisionComponent.h"
 
 #include "Input/Input.h"
 #include "Utils/Math.h"
