@@ -2,7 +2,7 @@
 
 void BirdController::Start()
 {
-	m_isAlive = true;
+	Restart();
 }
 void BirdController::Update()
 {
@@ -32,4 +32,17 @@ void BirdController::Update()
 
 void BirdController::Render()
 {
+}
+
+void BirdController::Kill()
+{
+	m_isAlive = false;
+}
+
+void BirdController::Restart()
+{
+	m_isAlive = true;
+	auto transform = GetOwner()->GetComponent<Cure::TransformComponent>();
+	transform->m_Velocity = { 0, 0 };
+	transform->m_Position = { 100, 300 };
 }

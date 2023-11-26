@@ -2,13 +2,14 @@
 #include "../Objects/Pipe.h"
 #include <sstream>
 #include "../Objects/Bird.h"
+#include "BirdController.h"
 void PipeController::Start()
 {
 	m_Generator.seed(m_RandomDevice());
 	m_LowerPipeDist = std::uniform_real_distribution<float>(0, 300);
 }
 
-void PipeController::Update()
+void PipeController::Update() 
 {
 	auto collisionComponent = GetOwner()->GetComponent<Cure::CollisionComponent>();
 	collisionComponent->ClearHitboxes();
@@ -24,8 +25,11 @@ void PipeController::Update()
 
 	collisionComponent->AddHitbox({ 0, 0, 52, lowPart + 22});
 	collisionComponent->AddHitbox({ 0, lowPart + pipeGap, 52, 300});
-	if (collisionComponent->HasEnteredCollision(Cure::Application::Get().GetSceneManager().GetCurrentScene().GetObjectManager().GetObjectByTag<Bird>("Bird"))) {
-		std::cout << "test kolizji\n";
+	auto bird = Cure::Application::Get().GetSceneManager().GetCurrentScene().GetObjectManager().GetObjectByTag<Bird>("Bird");
+	if (collisionComponent->HasEnteredCollision(bird)) {
+		bird->GetComponent<BirdController>()->Restart();
+		transform->m_Position.x = 900;
+		pipe->SetLowerPos(m_LowerPipeDist(m_Generator));
 	}
 }
 
