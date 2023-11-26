@@ -9,6 +9,7 @@ Pipe::Pipe(float lowerPipe)
 	auto transform = AddComponent<Cure::TransformComponent>();
 	transform->m_Position = { 600, 0 };
 	auto pipeController = AddComponent<PipeController>();
+	auto collisionComponent = AddComponent<Cure::CollisionComponent>();
 }
 
 void Pipe::SetLowerPos(float lp)

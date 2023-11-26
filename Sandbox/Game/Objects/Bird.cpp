@@ -9,5 +9,7 @@ Bird::Bird()
 	transform->m_Position = { 100, 300 };
 	auto birdController = AddComponent<BirdController>();
 	auto spriteComponent = AddComponent<Cure::SpriteComponent>();
+	SDL_FRect hitbox = { 0.f, 0.f, 34.f, 24.f };
+	auto collisionComponent = AddComponent<Cure::CollisionComponent>(hitbox);
 	spriteComponent->SetSprite(assets.GetAsset<Cure::SpriteAsset>("bird-mid"));
 }
