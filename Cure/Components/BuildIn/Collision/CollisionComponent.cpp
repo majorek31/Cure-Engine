@@ -34,20 +34,20 @@ namespace Cure {
 					if (SDL_HasIntersectionF(&ownerTestRect, &colliderTestRect)) {
 						if (HasCollision(object)) {
 							for (auto& pair : m_Colliders) {
-								if (pair.second == object) {
-									pair.first = true;
-									break;
-								}
+								if (pair.collider == object)
+									pair.justEntered = false;
 							}
 						}
 						else {
- 							m_Colliders.emplace_back(std::make_pair(false, object));
+ 							m_Colliders.emplace_back(CollisionEntry(true, rect, object));
 						}
 					}
 					else {
-						m_Colliders.erase(std::remove_if(m_Colliders.begin(), m_Colliders.end(), [object](auto& pair) {
-							return pair.second == object;
+						// due to floating point precision error it's better to do it this way.
+						m_Colliders.erase(std::remove_if(m_Colliders.begin(), m_Colliders.end(), [object, rect](CollisionEntry& entry) {
+							return SDL_FRectEquals(&rect, &entry.hitbox);
 						}), m_Colliders.end());
+
 					}
 				}
 			}
@@ -57,14 +57,14 @@ namespace Cure {
 	{
 		for (auto& hitbox : m_Hitboxes) {
 			auto transform = GetOwner()->GetComponent<TransformComponent>();
-			Cure::Application::Get().GetWindow().RenderRectOutline(transform->m_Position, { hitbox.w, hitbox.h}, {255, 0, 0, 255});
+			Cure::Application::Get().GetWindow().RenderRectOutline({transform->m_Position.x + hitbox.x, transform->m_Position.y + hitbox.y }, {hitbox.w, hitbox.h}, {255, 0, 0, 255});
 		}
 	}
 
 	bool CollisionComponent::HasCollision(Object* obj)
 	{
 		for (auto& pair : m_Colliders) {
-			if (pair.second == obj)
+			if (pair.collider == obj)
 				return true;
 		}
 		return false;
@@ -73,13 +73,13 @@ namespace Cure {
 	bool CollisionComponent::HasEnteredCollision(Object* obj)
 	{
 		for (auto& pair : m_Colliders) {
-			if (pair.second == obj && pair.first == false)
+			if (pair.collider == obj && pair.justEntered)
 				return true;
 		}
 		return false;
 	}
 
-	void CollisionComponent::AddHitox(SDL_FRect rect)
+	void CollisionComponent::AddHitbox(SDL_FRect rect)
 	{
 		m_Hitboxes.emplace_back(rect);
 	}

@@ -4,6 +4,18 @@
 #include <SDL.h>
 
 namespace Cure {
+	struct CollisionEntry
+	{
+		CollisionEntry(bool enter, SDL_FRect hitbox, Object* collider)
+		{
+			justEntered = enter;
+			this->hitbox = hitbox;
+			this->collider = collider;
+		}
+		bool justEntered;
+		SDL_FRect hitbox;
+		Object* collider;
+	};
 	class CURE_API CollisionComponent : public Component
 	{
 	public:
@@ -21,7 +33,7 @@ namespace Cure {
 		void ClearHitboxes();
 	private:
 		std::vector<SDL_FRect> m_Hitboxes;
-		std::vector<std::pair<bool, Object*>> m_Colliders;
+		std::vector<CollisionEntry> m_Colliders;
 	};
 }
 
