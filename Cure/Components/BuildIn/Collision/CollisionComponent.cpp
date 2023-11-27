@@ -55,10 +55,10 @@ namespace Cure {
 	}
 	void CollisionComponent::Render()
 	{
-		for (auto& hitbox : m_Hitboxes) {
+		/*for (auto& hitbox : m_Hitboxes) {
 			auto transform = GetOwner()->GetComponent<TransformComponent>();
 			Cure::Application::Get().GetWindow().RenderRectOutline({transform->m_Position.x + hitbox.x, transform->m_Position.y + hitbox.y }, {hitbox.w, hitbox.h}, {255, 0, 0, 255});
-		}
+		}*/
 	}
 
 	bool CollisionComponent::HasCollision(Object* obj)
