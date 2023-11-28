@@ -41,8 +41,19 @@ void BirdController::Kill()
 
 void BirdController::Restart()
 {
+	m_Points = 0;
 	m_isAlive = true;
 	auto transform = GetOwner()->GetComponent<Cure::TransformComponent>();
 	transform->m_Velocity = { 0, 0 };
 	transform->m_Position = { 100, 300 };
+}
+
+void BirdController::IncreasePoints()
+{
+	m_Points++;
+}
+
+int BirdController::GetPoints()
+{
+	return m_Points;
 }

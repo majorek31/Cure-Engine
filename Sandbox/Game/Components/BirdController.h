@@ -9,8 +9,11 @@ public:
 	void Render() override;
 	void Kill();
 	void Restart();
+	void IncreasePoints();
+	int GetPoints();
 private:
 	bool m_isAlive;
 	bool m_isGoingUp = false;
+	int m_Points;
 };
 

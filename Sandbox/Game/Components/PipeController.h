@@ -12,5 +12,6 @@ private:
 	std::random_device m_RandomDevice;
 	std::mt19937 m_Generator;
 	std::uniform_real_distribution<float> m_LowerPipeDist;
+	bool m_CollidedThisFrame = false;
 };
 
