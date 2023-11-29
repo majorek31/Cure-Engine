@@ -13,6 +13,7 @@ namespace Cure {
 
 	Application* CreateApp(Cure::ApplicationParameters& params)
 	{
+		CURE_TIME();
 		SDL_Init(SDL_INIT_VIDEO);
 		TTF_Init();
 
