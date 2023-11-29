@@ -16,5 +16,8 @@ struct DebugTimer {
 		std::cout << "Execution of " << m_Name << " took " << duration.count() << "ms\n";
 	}
 };
-
-#define CURE_TIME() DebugTimer(__FUNCTION__);
+#ifdef _DEBUG
+	#define CURE_TIME() DebugTimer(__FUNCTION__);
+#else
+	#define CURE_TIME() void;
+#endif
