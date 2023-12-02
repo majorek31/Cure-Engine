@@ -7,6 +7,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 
 namespace Cure {
 	Cure::Application* Application::s_Instance;
@@ -15,6 +16,7 @@ namespace Cure {
 	{
 		CURE_TIME();
 		SDL_Init(SDL_INIT_VIDEO);
+		Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
 		TTF_Init();
 
 		Application::s_Instance = new Application(params);
@@ -41,6 +43,7 @@ namespace Cure {
 		delete m_TimeController;
 		TTF_Quit();
 		SDL_Quit();
+		Mix_Quit();
 	}
 
 	Application& Application::Get() { return *s_Instance; }
