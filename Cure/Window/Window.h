@@ -30,6 +30,8 @@ namespace Cure {
 
 		void RenderRectOutline(Vec2 pos, Vec2 size, SDL_Color color);
 		void RenderRectFilled(Vec2 pos, Vec2 size, SDL_Color color);
+		// not working: to be fixed
+		void RenderRectRounded(Vec2 pos, Vec2 size, float angle, float radius);
 
 		void RenderCircleOutline(Vec2 pos, float radius, SDL_Color color);
 

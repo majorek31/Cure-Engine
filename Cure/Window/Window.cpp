@@ -90,6 +90,34 @@ namespace Cure {
 		SDL_RenderFillRectF(m_SDLRenderer, &rect);
 	}
 
+	void Window::RenderRectRounded(Vec2 pos, Vec2 size, float angle, float radius)
+	{
+		SDL_Rect rect = { pos.x, pos.y, size.x, size.y };
+		SDL_Point center = { static_cast<int>(pos.x + size.x / 2), static_cast<int>(pos.y + size.y / 2) };
+		SDL_RenderCopyEx(m_SDLRenderer, NULL, &rect, 0, angle, &center, SDL_FLIP_NONE);
+
+		for (int i = 0; i <= radius; ++i)
+		{
+			SDL_RenderDrawPoint(m_SDLRenderer, pos.x + static_cast<int>(radius) - i, pos.y + static_cast<int>(radius) - i);
+			SDL_RenderDrawPoint(m_SDLRenderer, pos.x + size.x - static_cast<int>(radius) + i, pos.y + static_cast<int>(radius) - i);
+			SDL_RenderDrawPoint(m_SDLRenderer, pos.x + static_cast<int>(radius) - i, pos.y + size.y - static_cast<int>(radius) + i);
+			SDL_RenderDrawPoint(m_SDLRenderer, pos.x + size.x - static_cast<int>(radius) + i, pos.y + size.y - static_cast<int>(radius) + i);
+
+			for (int j = pos.x + static_cast<int>(radius) - i; j <= pos.x + size.x - static_cast<int>(radius) + i; ++j)
+			{
+				SDL_RenderDrawPoint(m_SDLRenderer, j, pos.y + static_cast<int>(radius) - i);
+				SDL_RenderDrawPoint(m_SDLRenderer, j, pos.y + size.y - static_cast<int>(radius) + i);
+			}
+
+			for (int j = pos.y + static_cast<int>(radius) - i; j <= pos.y + size.y - static_cast<int>(radius) + i; ++j)
+			{
+				SDL_RenderDrawPoint(m_SDLRenderer, pos.x + static_cast<int>(radius) - i, j);
+				SDL_RenderDrawPoint(m_SDLRenderer, pos.x + size.x - static_cast<int>(radius) + i, j);
+			}
+		}
+	}
+
+
 	void Window::RenderCircleOutline(Vec2 pos, float radius, SDL_Color color)
 	{
 		for (int a = 0; a < 360; a++) {
