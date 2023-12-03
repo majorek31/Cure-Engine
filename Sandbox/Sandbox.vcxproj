@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Objects\Pipe.cpp" />
     <ClCompile Include="Game\Components\PipeController.cpp" />
+    <ClCompile Include="Game\Scenes\MenuScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cure\Cure.vcxproj">
@@ -160,6 +161,7 @@
     <ClInclude Include="Game\Components\BackgroundComponent.h" />
     <ClInclude Include="Game\Objects\Pipe.h" />
     <ClInclude Include="Game\Components\PipeController.h" />
+    <ClInclude Include="Game\Scenes\MenuScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

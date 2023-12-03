@@ -3,6 +3,7 @@
 #include "Game/Objects/Bird.h"
 #include "Game/Objects/Pipe.h"
 #include "Game/Scenes/GameScene.h"
+#include "Game/Scenes/MenuScene.h"
 
 int main() {
 	Cure::ApplicationParameters p;
@@ -18,7 +19,7 @@ int main() {
 	assetMgr.LoadAsset("bird-mid", new Cure::SpriteAsset("assets/bird-mid.png"));
 	assetMgr.LoadAsset("pipe", new Cure::SpriteAsset("assets/pipe.png"));
 	assetMgr.LoadAsset("debug_font", new Cure::FontAsset("C:/Windows/fonts/Arial.ttf", 16));
-	app->GetSceneManager().LoadScene(new GameScene());
+	app->GetSceneManager().LoadScene(new MenuScene());
 
 	app->Run();
 }
