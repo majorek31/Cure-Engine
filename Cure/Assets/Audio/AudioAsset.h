@@ -6,6 +6,7 @@
 namespace Cure {
 	class AudioAsset : public Asset
 	{
+	public:
 		AudioAsset(const std::string& path, AudioType type);
 		~AudioAsset();
 		size_t GetType() override;
