@@ -18,7 +18,6 @@ namespace Cure {
 		SDL_Init(SDL_INIT_VIDEO);
 		Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
 		TTF_Init();
-
 		Application::s_Instance = new Application(params);
 		return Application::s_Instance;
 	}
