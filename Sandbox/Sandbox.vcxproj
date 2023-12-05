@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)lib\SDL-IMAGE\include;$(SolutionDir)lib\SDL-TTF\include;$(SolutionDir)\lib\SDL\include;$(SolutionDir)lib\SDL-MIXEL\include;$(SolutionDir)Cure;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)lib\SDL-MIXER\include;$(SolutionDir)lib\SDL-IMAGE\include;$(SolutionDir)lib\SDL-TTF\include;$(SolutionDir)\lib\SDL\include;$(SolutionDir)lib\SDL-MIXEL\include;$(SolutionDir)Cure;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)-$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Platform)-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)lib\SDL-IMAGE\include;$(SolutionDir)lib\SDL-TTF\include;$(SolutionDir)\lib\SDL\include;$(SolutionDir)lib\SDL-MIXEL\include;$(SolutionDir)Cure;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)lib\SDL-MIXER\include;$(SolutionDir)lib\SDL-IMAGE\include;$(SolutionDir)lib\SDL-TTF\include;$(SolutionDir)\lib\SDL\include;$(SolutionDir)lib\SDL-MIXEL\include;$(SolutionDir)Cure;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)-$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Platform)-$(Configuration)\</IntDir>
   </PropertyGroup>

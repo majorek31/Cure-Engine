@@ -19,6 +19,7 @@ int main() {
 	assetMgr.LoadAsset("bird-mid", new Cure::SpriteAsset("assets/bird-mid.png"));
 	assetMgr.LoadAsset("pipe", new Cure::SpriteAsset("assets/pipe.png"));
 	assetMgr.LoadAsset("debug_font", new Cure::FontAsset("C:/Windows/fonts/Arial.ttf", 16));
+	assetMgr.LoadAsset("wing", new Cure::AudioAsset("assets/audio/audio_wing.wav", Cure::AudioType::WAV));
 	app->GetSceneManager().LoadScene(new MenuScene());
 
 	app->Run();
