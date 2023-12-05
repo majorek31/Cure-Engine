@@ -151,6 +151,7 @@
     <ClInclude Include="Assets\Asset.h" />
     <ClInclude Include="Assets\AssetManager\AssetManager.h" />
     <ClInclude Include="Assets\Audio\AudioAsset.h" />
+    <ClInclude Include="Assets\Audio\AudioFiles.h" />
     <ClInclude Include="Components\BuildIn\Collision\CollisionComponent.h" />
     <ClInclude Include="Components\BuildIn\Display\Sprite\SpriteComponent.h" />
     <ClInclude Include="Assets\Sprite\SpriteAsset.h" />

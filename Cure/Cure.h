@@ -31,5 +31,7 @@
 #include "Assets/Font/FontAsset.h"
 #include "Assets/Sprite/SpriteAsset.h"
 #include "Assets/AssetManager/AssetManager.h"
+#include "Assets/Audio/AudioAsset.h"
+#include "Assets/Audio/AudioFiles.h"
 
 #include "Window/Camera/Camera.h"
