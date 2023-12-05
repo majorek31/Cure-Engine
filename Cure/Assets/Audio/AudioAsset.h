@@ -4,7 +4,7 @@
 #include "../Asset.h"
 #include "AudioFiles.h"
 namespace Cure {
-	class AudioAsset : public Asset
+	class CURE_API AudioAsset : public Asset
 	{
 	public:
 		AudioAsset(const std::string& path, AudioType type);

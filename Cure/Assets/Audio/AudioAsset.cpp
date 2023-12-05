@@ -13,7 +13,8 @@ namespace Cure {
 		default:
 			break;
 		}
-		CURE_ASSERT(m_NativeAsset, "Couldn't load music asset");
+		CURE_ASSERT(m_NativeAsset, Mix_GetError());
+		Mix_PlayMusic(GetNativeMusic(), 0);
 	}
 
 	AudioAsset::~AudioAsset()
