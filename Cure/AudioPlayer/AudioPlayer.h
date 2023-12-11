@@ -7,7 +7,7 @@ namespace Cure {
 	public:
 		static AudioPlayer& Get();
 		void StopPlaying();
-		void Play(AudioAsset audio, int volume);
+		void Play(AudioAsset* audio, int volume);
 	private:
 		AudioPlayer();
 		AudioPlayer(const AudioPlayer&) = delete;

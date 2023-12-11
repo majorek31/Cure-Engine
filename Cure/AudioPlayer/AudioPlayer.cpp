@@ -14,10 +14,10 @@ namespace Cure {
 		Mix_HaltMusic();
 	}
 
-	void AudioPlayer::Play(AudioAsset audio, int volume)
+	void AudioPlayer::Play(AudioAsset* audio, int volume)
 	{
 		Mix_Volume(-1, volume);
-		Mix_PlayMusic(audio.GetNativeMusic(), 0);
+		Mix_PlayMusic(audio->GetNativeMusic(), 0);
 	}
 
 }
