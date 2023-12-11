@@ -16,7 +16,7 @@
 // -----------
 #include "Objects/ObjectManager/ObjectManager.h"
 // -----------
-
+#include "AudioPlayer/AudioPlayer.h"
 #include "Components/BuildIn/Tag/TagComponent.h"
 #include "Components/BuildIn/Position/TransformComponent.h"
 #include "Components/BuildIn/Display/Sprite/SpriteComponent.h"
