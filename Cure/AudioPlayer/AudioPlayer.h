@@ -1,10 +1,13 @@
 #pragma once
+#include "../Assets/Audio/AudioAsset.h"
 #include "../Macros.h"
 namespace Cure {
 	class CURE_API AudioPlayer
 	{
 	public:
-		AudioPlayer& Get();
+		static AudioPlayer& Get();
+		void StopPlaying();
+		void Play(AudioAsset audio, int volume);
 	private:
 		AudioPlayer();
 		AudioPlayer(const AudioPlayer&) = delete;
