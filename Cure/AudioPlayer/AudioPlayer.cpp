@@ -2,6 +2,7 @@
 #include <SDL_mixer.h>
 namespace Cure {
 	Cure::AudioPlayer* AudioPlayer::s_Instance = nullptr;
+	AudioPlayer::AudioPlayer() { }
 	AudioPlayer& AudioPlayer::Get()
 	{
 		if (!s_Instance)
